@@ -73,8 +73,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     public T remove(int givenPosition) {
         T result = null;
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            assert !isEmpty();
+        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
             if (givenPosition == 1) {
                 result = firstNode.getData();
                 firstNode = firstNode.getNextNode();
@@ -97,23 +96,24 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         numberOfEntries = 0;
     }
 
-    public T replace(int givenPosition, T newEntry) {
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            assert !isEmpty();
+    public boolean replace(int givenPosition, T newEntry) {
+        boolean isSuccessful = false;
+        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
             Node desiredNode = getNodeAt(givenPosition);
-            T originalEntry = desiredNode.getData();
             desiredNode.setData(newEntry);
-            return originalEntry;
+            isSuccessful = true;
         } else {
+            // TODO: Do we need to throw an exception?
             throw new IndexOutOfBoundsException("Illegal position given to replace operation.");
         }
+        return isSuccessful;
     }
 
     public T getEntry(int givenPosition) {
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            assert !isEmpty();
+        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
             return getNodeAt(givenPosition).getData();
         } else {
+            // TODO: Do we need to throw an exception?
             throw new IndexOutOfBoundsException("Illegal position given to getEntry operation.");
         }
     }
@@ -131,65 +131,57 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         return found;
     }
 
-    public int getLength() {
+    public int getNumberOfEntries() {
         return numberOfEntries;
     }
 
     public boolean isEmpty() {
-        boolean result;
-        if (numberOfEntries == 0) {
-            assert firstNode == null;
-            result = true;
-        } else {
-            assert firstNode != null;
-            result = false;
-        }
-        return result;
-    }
-
-    public boolean isFull() {
-        return false;
+        return numberOfEntries == 0;
     }
 
     private Node getNodeAt(int givenPosition) {
-        assert !isEmpty() && (1 <= givenPosition) && (givenPosition <= numberOfEntries);
-        Node currentNode = firstNode;
-        for (int counter = 1; counter < givenPosition; counter++) {
-            currentNode = currentNode.getNextNode();
+        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+            Node currentNode = firstNode;
+            for (int counter = 1; counter < givenPosition; counter++) {
+                currentNode = currentNode.getNextNode();
+            }
+            if (currentNode != null) {
+                return currentNode;
+            } else {
+                // TODO: Do we need to throw an exception?
+                throw new IndexOutOfBoundsException("Illegal position given to getNodeAt operation.");
+            }
+        } else {
+            // TODO: Do we need to throw an exception?
+            throw new IndexOutOfBoundsException("Illegal position given to getNodeAt operation.");
         }
-        assert currentNode != null;
-        return currentNode;
     }
 
     public Iterator<T> getIterator() {
         return new IteratorForLinkedList();
     }
 
-  private class IteratorForLinkedList implements Iterator<T> {
-    private Node nextNode;
+    private class IteratorForLinkedList implements Iterator<T> {
+        private Node nextNode;
 
-    private IteratorForLinkedList() {
-      nextNode = firstNode;
-    }
-
-    public boolean hasNext() {
-      return nextNode != null;
-    }
-
-    public T next() {
-      T result;
-      if (hasNext()) {
-        result = nextNode.getData();
-        nextNode = nextNode.getNextNode();
-      }
-        else {
-            throw new IndexOutOfBoundsException("Illegal position given to next operation.");
+        private IteratorForLinkedList() {
+            nextNode = firstNode;
         }
-        return result;
-    }
 
-    public void remove() {
-        throw new UnsupportedOperationException("remove() is not supported by this iterator");
+        public boolean hasNext() {
+            return nextNode != null;
+        }
+
+        public T next() {
+            T result;
+            if (hasNext()) {
+                result = nextNode.getData();
+                nextNode = nextNode.getNextNode();
+            } else {
+                // TODO: Do we need to throw an exception?
+                throw new IndexOutOfBoundsException("Illegal position given to next operation.");
+            }
+            return result;
+        }
     }
-  }
 }

@@ -4,6 +4,8 @@ package ADT;
 
 import java.util.Iterator;
 
+  // TODO: Should we use Integer or int?
+
 public interface LinkedListInterface<T> {
   public Iterator<T> getIterator();
 
@@ -15,15 +17,14 @@ public interface LinkedListInterface<T> {
 
   public void clear();
 
-  public T replace(int givenPosition, T newEntry);
+  public boolean replace(int givenPosition, T newEntry);
 
   public T getEntry(int givenPosition);
 
   public boolean contains(T anEntry);
 
-  public int getLength();
+  public int getNumberOfEntries();
 
   public boolean isEmpty();
 
-  public boolean isFull();
 }
