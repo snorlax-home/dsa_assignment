@@ -184,4 +184,14 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             return result;
         }
     }
+
+    public String toString() {
+        String outputStr = "";
+        Node currentNode = firstNode;
+        while (currentNode != null) {
+            outputStr += currentNode.getData() + "\n";
+            currentNode = currentNode.getNextNode();
+        }
+        return outputStr;
+    }
 }
