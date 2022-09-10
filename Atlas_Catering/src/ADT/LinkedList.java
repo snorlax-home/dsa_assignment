@@ -40,6 +40,11 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         private void setNextNode(Node nextNode) {
             next = nextNode;
         }
+
+        public String toString() {
+            return data.toString();
+        }
+
     }
 
     public void add(T newEntry) {
@@ -47,7 +52,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         if (isEmpty())
             firstNode = newNode;
         else {
-            Node lastNode = getNodeAt(numberOfEntries);
+            Node lastNode = getNodeAt(numberOfEntries-1);
             lastNode.setNextNode(newNode);
         }
         numberOfEntries++;
@@ -55,9 +60,9 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     public boolean add(int newPosition, T newEntry) {
         boolean isSuccessful = true;
-        if ((newPosition >= 1) && (newPosition <= numberOfEntries + 1)) {
+        if ((newPosition >= 0) && (newPosition <= numberOfEntries)) {
             Node newNode = new Node(newEntry);
-            if (newPosition == 1) {
+            if (newPosition == 0) {
                 newNode.setNextNode(firstNode);
                 firstNode = newNode;
             } else {
@@ -75,8 +80,8 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     public T remove(int givenPosition) {
         T result = null;
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            if (givenPosition == 1) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
+            if (givenPosition == 0) {
                 result = firstNode.getData();
                 firstNode = firstNode.getNextNode();
             } else {
@@ -89,7 +94,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             numberOfEntries--;
         }
 
-        // TODO: Make sure to check for null
+        
         return result;
     }
 
@@ -100,23 +105,21 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     public boolean replace(int givenPosition, T newEntry) {
         boolean isSuccessful = false;
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
             Node desiredNode = getNodeAt(givenPosition);
             desiredNode.setData(newEntry);
             isSuccessful = true;
         } 
 
-        // TODO: Make sure to check for false
         return isSuccessful;
     }
 
     public T getEntry(int givenPosition) {
         T result = null;
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
             result = getNodeAt(givenPosition).getData();
         } 
 
-        // TODO: Make sure to check for null
         return result;
     }
 
@@ -143,9 +146,9 @@ public class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     private Node getNodeAt(int givenPosition) {
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
             Node currentNode = firstNode;
-            for (int counter = 1; counter < givenPosition; counter++) {
+            for (int counter = 0; counter < givenPosition; counter++) {
                 currentNode = currentNode.getNextNode();
             }
             if (currentNode != null) {
@@ -154,8 +157,6 @@ public class LinkedList<T> implements LinkedListInterface<T> {
                 return null;
             }
         } else {
-
-            // TODO: Make sure to check for null
             return null;
         }
     }
@@ -181,12 +182,10 @@ public class LinkedList<T> implements LinkedListInterface<T> {
                 result = nextNode.getData();
                 nextNode = nextNode.getNextNode();
             } 
-            // TODO: Make sure to check for null
             return result;
         }
     }
 
-    // TODO: Do we need this?
     public String toString() {
         String outputStr = "";
         Node currentNode = firstNode;

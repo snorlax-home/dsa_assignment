@@ -16,6 +16,7 @@ public class DeliveryView {
 
     public void newDelivery() {
         InterfaceUtils.printHeader();
+        InterfaceUtils.printDeliveryHeader();
         Scanner sc = new Scanner(System.in);
         Delivery tempDelivery = new Delivery();
         System.out.println("Please fill in delivery address as following.");
@@ -51,6 +52,7 @@ public class DeliveryView {
             return;
         }
         InterfaceUtils.printHeader();
+        InterfaceUtils.printDeliveryHeader();
         System.out.println("Below are the summary of delivery.");
         System.out.println("--------");
         // Address
@@ -77,6 +79,7 @@ public class DeliveryView {
     public void deliveryReport() {
         Delivery[] deliveries = controller.getArray();
         InterfaceUtils.printHeader();
+        InterfaceUtils.printDeliveryHeader();
         int count = 0;
         for (Delivery d : deliveries) {
             if (d == null) {

@@ -37,7 +37,7 @@ public class ProductController {
     }
 
     public Product removeProduct(int position) {
-        return productList.remove(position);
+        return (Product)productList.remove(position);
     }
 
     public void clearProductList() {

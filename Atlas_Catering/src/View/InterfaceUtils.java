@@ -6,8 +6,14 @@ public class InterfaceUtils {
 
   public static void printHeader() {
     System.out.println("--------ATLAS Catering--------");
-    // TODO: Separate this out
+  }
+
+  public static void printDeliveryHeader() {
     System.out.println("--------Delivery Queue--------");
+  }
+
+  public static void printProductHeader() {
+    System.out.println("-----------Products-----------");
   }
 
   public static boolean continuePrompt() {
