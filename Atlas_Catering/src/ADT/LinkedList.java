@@ -133,6 +133,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         return found;
     }
 
+
     public int getNumberOfEntries() {
         return numberOfEntries;
     }
@@ -185,6 +186,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         }
     }
 
+    // TODO: Do we need this?
     public String toString() {
         String outputStr = "";
         Node currentNode = firstNode;

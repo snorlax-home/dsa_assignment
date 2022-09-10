@@ -1,3 +1,5 @@
+// Author: Ong Tun Jiun
+
 package Controller;
 
 import ADT.LinkedList;
@@ -10,6 +12,10 @@ public class ProductController {
 
     public ProductController() {
         productList = new LinkedList<>();
+    }
+
+    public LinkedListInterface<Product> getProductList() {
+        return productList;
     }
 
     public void addProduct(Product product) {
@@ -74,9 +80,10 @@ public class ProductController {
 
     public String toString() {
         String output = "";
-        Iterator<Product> iterator = getIterator();
-        while (iterator.hasNext()) {
-            output += iterator.next().toString() + " ";
+
+        Iterator<Product> productListIterator = productList.getIterator();
+        while (productListIterator.hasNext()) {
+            output += productListIterator.next().toString() + "\n";
         }
         return output;
     }
@@ -85,7 +92,5 @@ public class ProductController {
         return productList.getEntry(position).toString();
     }
 
-    public LinkedListInterface<Product> getProductList() {
-        return productList;
-    }
+
 }
