@@ -16,6 +16,10 @@ public class InterfaceUtils {
     System.out.println("-----------Products-----------");
   }
 
+  public static void printOrderHeader() {
+    System.out.println("-----------Orders-----------");
+  }
+
   public static boolean continuePrompt() {
     Scanner sc = new Scanner(System.in);
     System.out.println("Press Enter key to continue...");
