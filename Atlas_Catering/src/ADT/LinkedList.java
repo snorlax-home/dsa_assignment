@@ -44,16 +44,17 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     public void add(T newEntry) {
         Node newNode = new Node(newEntry);
-        if (isEmpty()) {
+        if (isEmpty())
             firstNode = newNode;
-        } else {
+        else {
             Node lastNode = getNodeAt(numberOfEntries);
             lastNode.setNextNode(newNode);
         }
         numberOfEntries++;
     }
 
-    public void add(int newPosition, T newEntry) {
+    public boolean add(int newPosition, T newEntry) {
+        boolean isSuccessful = true;
         if ((newPosition >= 1) && (newPosition <= numberOfEntries + 1)) {
             Node newNode = new Node(newEntry);
             if (newPosition == 1) {
@@ -67,8 +68,9 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             }
             numberOfEntries++;
         } else {
-            throw new IndexOutOfBoundsException("Illegal position given to add operation.");
+            isSuccessful = false;
         }
+        return isSuccessful;
     }
 
     public T remove(int givenPosition) {
@@ -85,10 +87,10 @@ public class LinkedList<T> implements LinkedListInterface<T> {
                 result = nodeToRemove.getData();
             }
             numberOfEntries--;
-            return result;
-        } else {
-            throw new IndexOutOfBoundsException("Illegal position given to remove operation.");
         }
+
+        // TODO: Make sure to check for null
+        return result;
     }
 
     public void clear() {
@@ -102,20 +104,20 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             Node desiredNode = getNodeAt(givenPosition);
             desiredNode.setData(newEntry);
             isSuccessful = true;
-        } else {
-            // TODO: Do we need to throw an exception?
-            throw new IndexOutOfBoundsException("Illegal position given to replace operation.");
-        }
+        } 
+
+        // TODO: Make sure to check for false
         return isSuccessful;
     }
 
     public T getEntry(int givenPosition) {
+        T result = null;
         if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            return getNodeAt(givenPosition).getData();
-        } else {
-            // TODO: Do we need to throw an exception?
-            throw new IndexOutOfBoundsException("Illegal position given to getEntry operation.");
-        }
+            result = getNodeAt(givenPosition).getData();
+        } 
+
+        // TODO: Make sure to check for null
+        return result;
     }
 
     public boolean contains(T anEntry) {
@@ -148,12 +150,12 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             if (currentNode != null) {
                 return currentNode;
             } else {
-                // TODO: Do we need to throw an exception?
-                throw new IndexOutOfBoundsException("Illegal position given to getNodeAt operation.");
+                return null;
             }
         } else {
-            // TODO: Do we need to throw an exception?
-            throw new IndexOutOfBoundsException("Illegal position given to getNodeAt operation.");
+
+            // TODO: Make sure to check for null
+            return null;
         }
     }
 
@@ -173,14 +175,12 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         }
 
         public T next() {
-            T result;
+            T result = null;
             if (hasNext()) {
                 result = nextNode.getData();
                 nextNode = nextNode.getNextNode();
-            } else {
-                // TODO: Do we need to throw an exception?
-                throw new IndexOutOfBoundsException("Illegal position given to next operation.");
-            }
+            } 
+            // TODO: Make sure to check for null
             return result;
         }
     }
