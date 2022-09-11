@@ -74,6 +74,14 @@ public class UserView {
         return input;
     }
 
+    public static int yourInputChoice(int choicesAmount, int exception) {
+        System.out.println("----------------------------");
+        System.out.print("Your Choice: ");
+        int input = InterfaceUtils.getChoice(choicesAmount, -1);
+        System.out.println("----------------------------");
+        return input;
+    }
+
     public static void printUserDetails(User user) {
         System.out.println(user.getUsername() + "'s details:");
         System.out.println("1. Username: " + user.getUsername());
@@ -89,7 +97,7 @@ public class UserView {
         // controller.updateUser();
         showUserList();
         System.out.println("Please Input user's number to perform edit and -1 to end the program!");
-        int userIndex = UserView.yourInputChoice(controller.usersAmount());
+        int userIndex = UserView.yourInputChoice(controller.usersAmount(), -1);
 
         if(userIndex != -1) {
             UserView.printUserDetails(controller.readUser(userIndex));
@@ -99,6 +107,15 @@ public class UserView {
             UserView.printEditScreen(column);
             String newData = sc.nextLine();
             controller.updateUser(userIndex, UserView.getRowNumbers(column), newData);
+        }
+    }
+
+    public void deleteUser() {
+        showUserList();
+        System.out.println("Please Input user's number to perform delete user and -1 to end the program!");
+        int userIndex = UserView.yourInputChoice(controller.usersAmount(), -1);
+        if(userIndex != -1) {
+            controller.deleteUser(userIndex);
         }
     }
 
@@ -137,6 +154,7 @@ public class UserView {
                     view.editUser();
                     break;
                 case 3:
+                    view.deleteUser();
                     break;
                 case 4:
                     System.out.println("Thank you for using Atlas Catering!");

@@ -64,10 +64,10 @@ public class InterfaceUtils {
     return choice;
   }
 
-  public static int getChoice(int lowerRange, int upperRange) {
+  public static int getChoice(int choiceRange, int exception) {
     Scanner sc = new Scanner(System.in);
     int choice = sc.nextInt();
-    while (choice < lowerRange || choice > upperRange) {
+    while ((choice < 1 || choice > choiceRange) && choice != exception) {
       System.out.println("Invalid choice. Please enter again.");
       choice = sc.nextInt();
     }

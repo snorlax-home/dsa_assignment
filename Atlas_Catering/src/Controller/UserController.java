@@ -42,12 +42,12 @@ public class UserController {
         }
     }
 
+    public void deleteUser(int index) {
+        this.users.remove(index);
+    }
+
     public void updateUser(int index, String column, String value) {
         User user = this.users.getEntry(index);
-        System.out.println(user);
-        System.out.println(this.users.getNumberOfEntries());
-        System.out.println(index);
-        System.out.println(column + "=" + value);
         switch(column) {
             case "Username":
                 user.setUsername(value);
