@@ -1,14 +1,22 @@
+/**
+ * @author Ong Tun Jiun
+ */
+
+
 package Entity;
 
 public class Product {
-    String productNo;
-    String productName;
-    String productDescription;
-    double productPrice;
+    // Attributes
+    private String productNo;
+    private String productName;
+    private String productDescription;
+    private double productPrice;
 
+    // Constructor
     public Product() {
         this("", "", "", 0.0);
     }
+
 
     public Product(String productNo, String productName, String productDescription, double productPrice) {
         this.productNo = productNo;
@@ -17,6 +25,7 @@ public class Product {
         this.productPrice = productPrice;
     }
 
+    // Getters
     public String getProductNo() {
         return productNo;
     }
@@ -33,6 +42,7 @@ public class Product {
         return productPrice;
     }
 
+    // Setters
     public void setProductNo(String productNo) {
         this.productNo = productNo;
     }
@@ -49,6 +59,7 @@ public class Product {
         this.productPrice = productPrice;
     }
 
+    // Methods
     @Override
     public String toString() {
         return "Product{" +
