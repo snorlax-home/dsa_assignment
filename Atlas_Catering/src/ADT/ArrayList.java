@@ -145,7 +145,7 @@ public class ArrayList<T> implements ListInterface<T>, Serializable {
   
   public int getIndex(T anEntry) {
     int entryIndex = -1;
-    for (int index = 0; entryIndex != -1 && index < numberOfEntries; index++) {
+    for (int index = 0; entryIndex == -1 && index < numberOfEntries; index++) {
       if (anEntry.equals(array[index])) {
           entryIndex = index;
       }

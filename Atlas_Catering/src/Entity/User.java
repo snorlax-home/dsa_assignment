@@ -1,4 +1,4 @@
-package test;
+package Entity;
 
 public class User {
     String username;
@@ -76,7 +76,7 @@ public class User {
     
     @Override
     public String toString() {
-        return  String.format("%-10s %-10s \n", username, password);
+        return String.format("%-10s %-10s \n", username, password);
     }
 
 }

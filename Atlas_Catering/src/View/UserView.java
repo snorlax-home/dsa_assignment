@@ -1,9 +1,10 @@
-package test;
+package View;
 
-import View.InterfaceUtils;
 import java.util.Scanner;
 
 import ADT.ArrayList;
+import Controller.UserController;
+import Entity.User;
 
 public class UserView {
     private UserController controller;
@@ -18,11 +19,43 @@ public class UserView {
         System.out.println("--------     User     --------");
     }
 
-    private static void printEditScreen(String column, String prevData) {
+    private static void printEditScreen(String column) {
         UserView.printHeader();
         System.out.println("You Are Modifying " + column + ":");
-        System.out.println("Your Previous " + column + " : " + prevData);
         System.out.print("Your New " + column + " : ");
+    }
+
+    private static String getRowNumbers(int column) {
+        String columnDesc = "";
+        switch(column) {
+            case 1:
+                columnDesc = "Username";
+                break;
+            case 2:
+                columnDesc = "Name";
+                break;
+            case 3:
+                columnDesc = "Email";
+                break;
+            case 4:
+                columnDesc = "Phone Number";
+                break;
+            case 5:
+                columnDesc = "Gender";
+                break;
+            case 6:
+                columnDesc = "Password";
+                break;
+        }
+        return columnDesc;
+    }
+
+    private static void printEditScreen(int column) {
+        String columnDesc = UserView.getRowNumbers(column);
+    
+        UserView.printHeader();
+        System.out.println("You Are Modifying " + columnDesc + ":");
+        System.out.print("Your New " + columnDesc + " is : ");
     }
 
     public static void printUserMenu() {
@@ -42,25 +75,30 @@ public class UserView {
     }
 
     public static void printUserDetails(User user) {
-        System.out.println(user.getName() + "'s details:");
-        System.out.println("Username: " + user.getUsername());
+        System.out.println(user.getUsername() + "'s details:");
+        System.out.println("1. Username: " + user.getUsername());
+        System.out.println("2. Name: " + user.getName());
+        System.out.println("3. Email: " + user.getEmail());
+        System.out.println("4. Phone Number:" + user.getPhoneNumber());
+        System.out.println("5. Gender: " + user.getGender());
+        System.out.println("6. Password: " + user.getPassword());
     }
 
-    public void editUsername() {
+    public void editUser() {
         // UserView.printEditScreen("Username", user.getUsername());
         // controller.updateUser();
         showUserList();
         System.out.println("Please Input user's number to perform edit and -1 to end the program!");
-        int action = UserView.yourInputChoice(2);
-        switch(action) {
-            case 1:
+        int userIndex = UserView.yourInputChoice(controller.usersAmount());
 
-                
-
-                break;
-            case 2:
-
-                break;
+        if(userIndex != -1) {
+            UserView.printUserDetails(controller.readUser(userIndex));
+            System.out.println("Please input the number of row to perform edit!");
+            int column = UserView.yourInputChoice(6);
+            
+            UserView.printEditScreen(column);
+            String newData = sc.nextLine();
+            controller.updateUser(userIndex, UserView.getRowNumbers(column), newData);
         }
     }
 
@@ -80,10 +118,13 @@ public class UserView {
 
         int choices = 4;
 
-        
+        User nengfu = new User("Nengfu", "Amamiya14");
         User tengli = new User("Tengli", "Shiyoruxz");
+        User waimin = new User("WaiMin1", "fraGo");
+        controller.createUser(nengfu);
+        controller.createUser(waimin);
         controller.createUser(tengli);
-        
+
         while(controller.programRunning()) {
             UserView.printUserMenu();
             int input = UserView.yourInputChoice(choices);
@@ -93,7 +134,7 @@ public class UserView {
                     InterfaceUtils.continuePrompt();
                     break;
                 case 2:
-                    view.editUsername();
+                    view.editUser();
                     break;
                 case 3:
                     break;

@@ -1,6 +1,9 @@
-package test;
+package Controller;
+
+import java.util.logging.LogManager;
 
 import ADT.ArrayList;
+import Entity.User;
 
 public class UserController {
     private ArrayList<User> users;
@@ -17,6 +20,10 @@ public class UserController {
 
     public ArrayList<User> readUsers() {
         return this.users;
+    }
+
+    public int getUserIndex(User user) {
+        return this.users.getIndex(user);
     }
 
     public User readUser(int index) {
@@ -37,23 +44,27 @@ public class UserController {
 
     public void updateUser(int index, String column, String value) {
         User user = this.users.getEntry(index);
+        System.out.println(user);
+        System.out.println(this.users.getNumberOfEntries());
+        System.out.println(index);
+        System.out.println(column + "=" + value);
         switch(column) {
-            case "username":
+            case "Username":
                 user.setUsername(value);
                 break;
-            case "name":
+            case "Name":
                 user.setName(value);
                 break;
-            case "email":
+            case "Email":
                 user.setEmail(value);
                 break;
-            case "phoneNumber":
+            case "PhoneNumber":
                 user.setPhoneNumber(Integer.parseInt(value));
                 break;
-            case "gender":
+            case "Gender":
                 user.setGender(value);
                 break;
-            case "password":
+            case "Password":
                 user.setPassword(value);
                 break;
         }
@@ -74,6 +85,10 @@ public class UserController {
 
     public void endProgram(){
         this.isRunning = false;
+    }
+
+    public int usersAmount(){
+        return this.users.getNumberOfEntries();
     }
 
 }
