@@ -8,13 +8,13 @@ import java.time.LocalDateTime;
 
 public class Delivery {
 
-    String addressLine1;
-    String addressLine2;
-    String city;
-    String state;
-    String zip;
-    double deliveryFee;
-    LocalDateTime estimatedDeliveryTime;
+    private String addressLine1;
+    private String addressLine2;
+    private String city;
+    private String state;
+    private String zip;
+    private double deliveryFee;
+    private LocalDateTime estimatedDeliveryTime;
 
     public Delivery() {
         this("", "", "", "", "", 0.0, LocalDateTime.now());
