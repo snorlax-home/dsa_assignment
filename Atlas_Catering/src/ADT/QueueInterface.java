@@ -2,6 +2,9 @@ package ADT;
 
 import java.util.Iterator;
 
+/**
+ * @author Tan Yi Hong
+ */
 public interface QueueInterface<T> {
     Iterator<T> getIterator();
 

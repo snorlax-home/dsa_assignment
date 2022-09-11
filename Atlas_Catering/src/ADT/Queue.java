@@ -1,9 +1,12 @@
 package ADT;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Iterator;
 
+/**
+ * @author Tan Yi Hong
+ * @param <T> The type of the elements in the queue
+ */
 public class Queue<T> implements QueueInterface<T> {
 
     private T[] array;
@@ -49,9 +52,7 @@ public class Queue<T> implements QueueInterface<T> {
             for (int i = 0; i < temp.length; i++) {
                 temp[i] = array[i + 1];
             }
-//            for (int i = frontIndex; i < backIndex; ++i) {
-//                array[i] = array[i + 1];
-//            }
+
             this.array = temp;
             backIndex--;
         }
