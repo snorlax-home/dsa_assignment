@@ -7,10 +7,10 @@ package Entity;
 
 public class Product {
     // Attributes
-    String productNo;
-    String productName;
-    String productDescription;
-    double productPrice;
+    private String productNo;
+    private String productName;
+    private String productDescription;
+    private double productPrice;
 
     // Constructor
     public Product() {
