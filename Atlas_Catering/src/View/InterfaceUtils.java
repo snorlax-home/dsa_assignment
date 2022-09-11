@@ -63,4 +63,15 @@ public class InterfaceUtils {
     }
     return choice;
   }
+
+  public static int getChoice(int lowerRange, int upperRange) {
+    Scanner sc = new Scanner(System.in);
+    int choice = sc.nextInt();
+    while (choice < lowerRange || choice > upperRange) {
+      System.out.println("Invalid choice. Please enter again.");
+      choice = sc.nextInt();
+    }
+    return choice;
+  }
+
 }
