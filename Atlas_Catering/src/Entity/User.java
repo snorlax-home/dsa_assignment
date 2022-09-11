@@ -1,4 +1,4 @@
-package Entity;
+package test;
 
 public class User {
     String username;
@@ -9,15 +9,18 @@ public class User {
     String password;
 
     public User(String username, String password) {
-        this(username, "", "", null, "",password);
+        this.username = username;
+        this.password = password;
+        name = null;
+        email = null;
+        phoneNumber = 0;
+        gender = null;
     }
 
-    public User(String username, String name, String email, Integer phoneNumber, String gender, String password) {
+    public User(String username, String name, String email,int phoneNumber,String gender, String password ){
         this.username = username;
         this.name = name;
         this.email = email;
-        this.gender = gender;
-        this.password = password;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.password = password;
@@ -71,6 +74,9 @@ public class User {
         this.password = password;
     }
     
-    
+    @Override
+    public String toString() {
+        return  String.format("%-10s %-10s \n", username, password);
+    }
 
 }
