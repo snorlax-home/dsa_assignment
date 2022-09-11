@@ -40,23 +40,29 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         private void setNextNode(Node nextNode) {
             next = nextNode;
         }
+
+        public String toString() {
+            return data.toString();
+        }
+
     }
 
     public void add(T newEntry) {
         Node newNode = new Node(newEntry);
-        if (isEmpty()) {
+        if (isEmpty())
             firstNode = newNode;
-        } else {
-            Node lastNode = getNodeAt(numberOfEntries);
+        else {
+            Node lastNode = getNodeAt(numberOfEntries-1);
             lastNode.setNextNode(newNode);
         }
         numberOfEntries++;
     }
 
-    public void add(int newPosition, T newEntry) {
-        if ((newPosition >= 1) && (newPosition <= numberOfEntries + 1)) {
+    public boolean add(int newPosition, T newEntry) {
+        boolean isSuccessful = true;
+        if ((newPosition >= 0) && (newPosition <= numberOfEntries)) {
             Node newNode = new Node(newEntry);
-            if (newPosition == 1) {
+            if (newPosition == 0) {
                 newNode.setNextNode(firstNode);
                 firstNode = newNode;
             } else {
@@ -67,14 +73,15 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             }
             numberOfEntries++;
         } else {
-            throw new IndexOutOfBoundsException("Illegal position given to add operation.");
+            isSuccessful = false;
         }
+        return isSuccessful;
     }
 
     public T remove(int givenPosition) {
         T result = null;
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            if (givenPosition == 1) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
+            if (givenPosition == 0) {
                 result = firstNode.getData();
                 firstNode = firstNode.getNextNode();
             } else {
@@ -85,10 +92,10 @@ public class LinkedList<T> implements LinkedListInterface<T> {
                 result = nodeToRemove.getData();
             }
             numberOfEntries--;
-            return result;
-        } else {
-            throw new IndexOutOfBoundsException("Illegal position given to remove operation.");
         }
+
+        
+        return result;
     }
 
     public void clear() {
@@ -98,24 +105,22 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     public boolean replace(int givenPosition, T newEntry) {
         boolean isSuccessful = false;
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
             Node desiredNode = getNodeAt(givenPosition);
             desiredNode.setData(newEntry);
             isSuccessful = true;
-        } else {
-            // TODO: Do we need to throw an exception?
-            throw new IndexOutOfBoundsException("Illegal position given to replace operation.");
-        }
+        } 
+
         return isSuccessful;
     }
 
     public T getEntry(int givenPosition) {
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            return getNodeAt(givenPosition).getData();
-        } else {
-            // TODO: Do we need to throw an exception?
-            throw new IndexOutOfBoundsException("Illegal position given to getEntry operation.");
-        }
+        T result = null;
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
+            result = getNodeAt(givenPosition).getData();
+        } 
+
+        return result;
     }
 
     public boolean contains(T anEntry) {
@@ -131,6 +136,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         return found;
     }
 
+
     public int getNumberOfEntries() {
         return numberOfEntries;
     }
@@ -140,20 +146,18 @@ public class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     private Node getNodeAt(int givenPosition) {
-        if (!isEmpty() && (givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
+        if (!isEmpty() && (givenPosition >= 0) && (givenPosition <= numberOfEntries-1)) {
             Node currentNode = firstNode;
-            for (int counter = 1; counter < givenPosition; counter++) {
+            for (int counter = 0; counter < givenPosition; counter++) {
                 currentNode = currentNode.getNextNode();
             }
             if (currentNode != null) {
                 return currentNode;
             } else {
-                // TODO: Do we need to throw an exception?
-                throw new IndexOutOfBoundsException("Illegal position given to getNodeAt operation.");
+                return null;
             }
         } else {
-            // TODO: Do we need to throw an exception?
-            throw new IndexOutOfBoundsException("Illegal position given to getNodeAt operation.");
+            return null;
         }
     }
 
@@ -173,14 +177,11 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         }
 
         public T next() {
-            T result;
+            T result = null;
             if (hasNext()) {
                 result = nextNode.getData();
                 nextNode = nextNode.getNextNode();
-            } else {
-                // TODO: Do we need to throw an exception?
-                throw new IndexOutOfBoundsException("Illegal position given to next operation.");
-            }
+            } 
             return result;
         }
     }

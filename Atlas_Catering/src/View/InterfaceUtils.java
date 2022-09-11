@@ -2,11 +2,26 @@ package View;
 
 import java.util.Scanner;
 
+/**
+ * @author Tan Yi Hong
+ */
+
 public class InterfaceUtils {
 
   public static void printHeader() {
     System.out.println("--------ATLAS Catering--------");
+  }
+
+  public static void printDeliveryHeader() {
     System.out.println("--------Delivery Queue--------");
+  }
+
+  public static void printProductHeader() {
+    System.out.println("-----------Products-----------");
+  }
+
+  public static void printOrderHeader() {
+    System.out.println("-----------Orders-----------");
   }
 
   public static boolean continuePrompt() {

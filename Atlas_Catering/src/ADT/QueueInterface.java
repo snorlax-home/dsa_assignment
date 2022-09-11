@@ -2,20 +2,32 @@ package ADT;
 
 import java.util.Iterator;
 
+/**
+ * @author Tan Yi Hong
+ */
 public interface QueueInterface<T> {
-  public Iterator<T> getIterator();
+    Iterator<T> getIterator();
 
-  public void enqueue(T newEntry);
+    void enqueue(T newEntry);
 
-  public T dequeue();
+    T dequeue();
 
-  public T getFront();
+    T getFront();
 
-  public boolean isEmpty();
+    boolean isEmpty();
 
-  public boolean isFull();
+    boolean isFull();
 
-  public void clear();
+    void clear();
 
-  public int getSize();
+    int getSize();
+
+    QueueInterface<T> clone();
+
+    boolean equals(QueueInterface<T> o);
+
+    boolean contains(T element);
+
+    boolean containsAll(T[] elements);
+
 }
