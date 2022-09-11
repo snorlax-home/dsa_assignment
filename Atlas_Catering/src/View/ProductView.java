@@ -6,8 +6,8 @@ import Controller.ProductController;
 import Entity.Product;
 import java.util.Scanner;
 
-import ADT.Queue;
-import ADT.QueueInterface;
+import ADT.LinkedQueue;
+import ADT.LinkedQueueInterface;
 
 import java.util.Iterator;
 
@@ -139,8 +139,8 @@ public class ProductView {
         InterfaceUtils.continuePrompt("1");
     }
 
-    public void addProductToOrder() {
-        QueueInterface<Product> productQueue = new Queue<>();
+    public LinkedQueue<Product> addProductToOrder() {
+        LinkedQueueInterface<Product> productQueue = new LinkedQueue<>();
 
         Scanner input = new Scanner(System.in);
 
@@ -173,6 +173,8 @@ public class ProductView {
             }
 
         } while (InterfaceUtils.continuePrompt("Enter 1 to select more products: ", "1"));
-        // Passed Queue to Order
+        
+        // Passed LinkedQueue to Order
+        return (LinkedQueue<Product>) productQueue;
     }
 }
