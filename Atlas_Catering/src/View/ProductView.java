@@ -8,9 +8,6 @@ import Controller.ProductController;
 import Entity.Product;
 import java.util.Scanner;
 
-import ADT.LinkedQueue;
-import ADT.LinkedQueueInterface;
-
 import java.util.Iterator;
 
 public class ProductView {
@@ -158,50 +155,5 @@ public class ProductView {
 
         // prompt user to continue
         InterfaceUtils.continuePrompt("1");
-    }
-
-    public LinkedQueue<Product> addProductToOrder() {
-        // create linked queue
-        LinkedQueueInterface<Product> productQueue = new LinkedQueue<>();
-
-        Scanner input = new Scanner(System.in);
-
-        // print Header
-        InterfaceUtils.printHeader();
-        InterfaceUtils.printProductHeader();
-
-        // print product list header
-        System.out.println("Product List");
-        System.out.printf("%-15s %-25s %-50s %18s\n", "Product No", "Product Name", "Product Description",
-                "Product Price (RM)");
-        System.out.printf("%-15s %-25s %-50s %18s\n", "----------", "------------", "-------------------",
-                "------------------");
-
-        // List all products
-        Iterator<Product> productListIterator = productController.getProductList().getIterator();
-        while (productListIterator.hasNext()) {
-
-            Product tempProduct = productListIterator.next();
-            System.out.printf("%-15s %-25s %-50s %18.2f\n", tempProduct.getProductNo(), tempProduct.getProductName(),
-                    tempProduct.getProductDescription(), tempProduct.getProductPrice());
-        }
-
-        // prompt user to input product no
-        do {
-            System.out.print("\nSelect Product by Entering Product No.:");
-            String productNo = input.nextLine();
-
-            // Get the product corresponding to the product no and add to queue
-            while (productListIterator.hasNext()) {
-                Product tempProduct = productListIterator.next();
-                if (tempProduct.getProductNo().equals(productNo)) {
-                    productQueue.enqueue(tempProduct);
-                }
-            }
-
-        } while (InterfaceUtils.continuePrompt("Enter 1 to select more products: ", "1"));
-
-        // Passed LinkedQueue to Order
-        return (LinkedQueue<Product>) productQueue;
     }
 }
