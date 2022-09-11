@@ -8,22 +8,23 @@ import View.InterfaceUtils;
 
 public class ProductDriver {
     public static void main(String[] args) {
-        ProductController controller = new ProductController();
-        ProductView view = new ProductView(controller);
+        ProductController productController = new ProductController();
+        ProductView productView = new ProductView(productController);
         int choice = 0;
 
         // Add sample product data
-        controller.addProduct("P001", "Chicken Chop", "Chicken Chop with fries", 8.00);
-        controller.addProduct("P002", "Nasi Lemak", "Traditional Malay Nasi Lemak", 6.00);
-        controller.addProduct("P003", "Chicken Rice", "Rice with Chicken", 6.00);
-        controller.addProduct("P004", "Nasi Goreng", "Traditional Malay Fried Rice", 6.00);
-        controller.addProduct("P005", "Spaghetti", "Traditional Italian Spaghetti", 8.00);
-        controller.addProduct("P006", "Chinese Fried Rice", "Traditional Chinese Fried Rice", 6.00);
-        controller.addProduct("P007", "Char Kway Teow", "Char Kway Teow with Fried Egg and Prawn", 6.00);
-        controller.addProduct("P008", "Mee Goreng", "Traditional Malay Fried Noodles", 6.00);
-        controller.addProduct("P009", "Wan Tan Mee", "Traditional Chinese Wan Tan Mee", 6.00);
-        controller.addProduct("P010", "Popcorn Chicken Rice", "Rice with Popcorn Chicken and salad", 8.00);
+        productController.addProduct("P001", "Chicken Chop", "Chicken Chop with  fries", 8.00);
+        productController.addProduct("P002", "Nasi Lemak", "Traditional Malay Nasi Lemak", 6.00);
+        productController.addProduct("P003", "Chicken Rice", "Rice with Chicken", 6.00);
+        productController.addProduct("P004", "Nasi Goreng", "Traditional Malay Fried Rice", 6.00);
+        productController.addProduct("P005", "Spaghetti", "Traditional Italian Spaghetti", 8.00);
+        productController.addProduct("P006", "Chinese Fried Rice", "Traditional Chinese Fried Rice", 6.00);
+        productController.addProduct("P007", "Char Kway Teow", "Char Kway Teow with Fried Egg and Prawn", 6.00);
+        productController.addProduct("P008", "Mee Goreng", "Traditional Malay Fried Noodles", 6.00);
+        productController.addProduct("P009", "Wan Tan Mee", "Traditional Chinese Wan Tan Mee", 6.00);
+        productController.addProduct("P010", "Popcorn Chicken Rice", "Rice with Popcorn Chicken and salad", 8.00);
 
+        // Display menu
         while (choice != 5) {
             InterfaceUtils.printHeader();
             System.out.println("Product");
@@ -37,16 +38,16 @@ public class ProductDriver {
             choice = InterfaceUtils.getChoice(6);
             switch (choice) {
                 case 1:
-                    view.addProduct();
+                    productView.addProduct();
                     break;
                 case 2:
-                    view.editProduct();
+                    productView.editProduct();
                     break;
                 case 3:
-                    view.removeProduct();
+                    productView.removeProduct();
                     break;
                 case 4:
-                    view.productReport();
+                    productView.productReport();
                     break;
                 case 5:
                     System.out.println("Thank you for using Atlas Catering!");

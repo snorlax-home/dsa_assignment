@@ -1,4 +1,6 @@
-// Author: Ong Tun Jiun
+/**
+ * @author Ong Tun Jiun
+ */
 
 package View;
 
@@ -12,19 +14,23 @@ import ADT.LinkedQueueInterface;
 import java.util.Iterator;
 
 public class ProductView {
+    // declare variables
     private ProductController productController;
 
     public ProductView(ProductController controller) {
         this.productController = controller;
     }
 
+    // Method to add new product
     public void addProduct() {
+        // print Header
         InterfaceUtils.printHeader();
         InterfaceUtils.printProductHeader();
 
         Scanner sc = new Scanner(System.in);
         Product tempProduct = new Product();
 
+        // Ask user to input product details
         System.out.println("Please fill in product details as following.");
         System.out.print("Product No: ");
         String productNo = sc.nextLine();
@@ -42,16 +48,22 @@ public class ProductView {
         double productPrice = sc.nextDouble();
         tempProduct.setProductPrice(productPrice);
 
+        // add product to product list
         productController.addProduct(tempProduct);
+        // prompt user to continue
         InterfaceUtils.continuePrompt("1");
 
     }
 
     public void editProduct() {
+        // print Header
         InterfaceUtils.printHeader();
+        InterfaceUtils.printProductHeader();
+
         Scanner sc = new Scanner(System.in);
         Product tempProduct = new Product();
 
+        // Ask user to input product details
         System.out.println("Please fill in product details as following.");
         System.out.print("Product No: ");
         String productNo = sc.nextLine();
@@ -84,15 +96,19 @@ public class ProductView {
                 }
             }
         }
+        // prompt user to continue
         InterfaceUtils.continuePrompt("1");
     }
 
     public void removeProduct() {
+        // print Header
         InterfaceUtils.printHeader();
         InterfaceUtils.printProductHeader();
+
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Please fill in product details as following.");
+        // Ask user to input product No
+        System.out.println("Please input the product No.");
         System.out.print("Product No: ");
         String productNo = sc.nextLine();
 
@@ -112,22 +128,26 @@ public class ProductView {
 
             }
         }
+        // prompt user to continue
         InterfaceUtils.continuePrompt("1");
     }
 
     public void productReport() {
+        // print Header
         InterfaceUtils.printHeader();
         InterfaceUtils.printProductHeader();
 
         // List amount of products
         System.out.println("Total Products: " + productController.getNumberOfProducts());
 
+        // Product List Header
         System.out.println("Product List");
         System.out.printf("%-15s %-25s %-50s %18s\n", "Product No", "Product Name", "Product Description",
                 "Product Price (RM)");
         System.out.printf("%-15s %-25s %-50s %18s\n", "----------", "------------", "-------------------",
                 "------------------");
 
+        // List all products
         Iterator<Product> productListIterator = productController.getProductList().getIterator();
         while (productListIterator.hasNext()) {
 
@@ -136,23 +156,28 @@ public class ProductView {
                     tempProduct.getProductDescription(), tempProduct.getProductPrice());
         }
 
+        // prompt user to continue
         InterfaceUtils.continuePrompt("1");
     }
 
     public LinkedQueue<Product> addProductToOrder() {
+        // create linked queue
         LinkedQueueInterface<Product> productQueue = new LinkedQueue<>();
 
         Scanner input = new Scanner(System.in);
 
+        // print Header
         InterfaceUtils.printHeader();
         InterfaceUtils.printProductHeader();
 
+        // print product list header
         System.out.println("Product List");
         System.out.printf("%-15s %-25s %-50s %18s\n", "Product No", "Product Name", "Product Description",
                 "Product Price (RM)");
         System.out.printf("%-15s %-25s %-50s %18s\n", "----------", "------------", "-------------------",
                 "------------------");
 
+        // List all products
         Iterator<Product> productListIterator = productController.getProductList().getIterator();
         while (productListIterator.hasNext()) {
 
@@ -161,10 +186,12 @@ public class ProductView {
                     tempProduct.getProductDescription(), tempProduct.getProductPrice());
         }
 
+        // prompt user to input product no
         do {
             System.out.print("\nSelect Product by Entering Product No.:");
             String productNo = input.nextLine();
 
+            // Get the product corresponding to the product no and add to queue
             while (productListIterator.hasNext()) {
                 Product tempProduct = productListIterator.next();
                 if (tempProduct.getProductNo().equals(productNo)) {
@@ -173,7 +200,7 @@ public class ProductView {
             }
 
         } while (InterfaceUtils.continuePrompt("Enter 1 to select more products: ", "1"));
-        
+
         // Passed LinkedQueue to Order
         return (LinkedQueue<Product>) productQueue;
     }
