@@ -3,12 +3,15 @@
  * @author Ong Tun Jiun
  */
 
+import Controller.OrderController;
 import Controller.ProductController;
+import Driver.OrderDriver;
 import Driver.ProductDriver;
 import View.InterfaceUtils;
 
 public class Main {
     public static void main(String[] args) {
+        OrderController orderController = new OrderController();
         ProductController productController = new ProductController();
 
         productController.addProduct("P001", "Chicken Chop", "Chicken Chop with  fries", 8.00);
@@ -38,7 +41,7 @@ public class Main {
             choice = InterfaceUtils.getChoice(5);
             switch (choice) {
                 case 1:
-                    //OrderDriver.orderMenu();
+                    OrderDriver.orderMenu(orderController);
                     break;
                 case 2:
                     ProductDriver.productMenu(productController);
