@@ -21,7 +21,11 @@ public class InterfaceUtils {
   }
 
   public static void printOrderHeader() {
-    System.out.println("-----------Orders-----------");
+    System.out.println("------------Orders------------");
+  }
+
+  public static void printPaymentHeader() {
+    System.out.println("-----------Payments-----------");
   }
 
   public static boolean continuePrompt() {

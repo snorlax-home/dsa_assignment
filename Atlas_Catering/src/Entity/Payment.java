@@ -1,32 +1,42 @@
 package Entity;
 
-public class Payment {
+public class Payment implements Comparable<Payment> {
     private String paymentID;
+    private String paymentMethod;
     private double orderFees;
-    private static final double taxSST = 0.06;
+    private static final double SST = 0.1;
     private double deliveryFees;
     private double totalPayment;
     
     public Payment() {
-        this("", 0.00, 0.00);
+        this("", "",0.00, 0.00);
     }
 
-    public Payment(String paymentID, double orderFees, double deliveryFees) {
+    public Payment(String paymentID, String paymentMethod,double orderFees, double deliveryFees) {
         this.paymentID = paymentID;
+        this.paymentMethod = paymentMethod;
         this.orderFees = orderFees;
         this.deliveryFees = deliveryFees;
     }
 
     public String getPaymentID() {
-        return paymentID;
+        return this.paymentID;
+    }
+
+    public String getPaymentMethod() {
+        return this.paymentMethod;
     }
 
     public double getOrderFees() {
-        return orderFees;
+        return this.orderFees;
+    }
+
+    public static double getSST() {
+        return SST * 100;
     }
 
     public double getDeliveryFees() {
-        return deliveryFees;
+        return this.deliveryFees;
     }
 
     public double getTotalPayment() {
@@ -35,6 +45,10 @@ public class Payment {
 
     public void setPaymentID(String paymentID) {
         this.paymentID = paymentID;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public void setOrderFees(double orderFees) {
@@ -46,7 +60,17 @@ public class Payment {
     }
 
     private double calculateTotalPayment() {
-        return totalPayment = orderFees + (orderFees * taxSST) + deliveryFees;
+        this.totalPayment = orderFees + (orderFees * SST) + deliveryFees;
+        return this.totalPayment;
     }
 
+    @Override
+    public String toString() {
+        return "Payment{" + "paymentID=" + paymentID + ", orderFees=" + orderFees + ", deliveryFees=" + deliveryFees + ", totalPayment=" + totalPayment + '}';
+    }
+
+    @Override
+    public int compareTo(Payment payment) {
+        return this.paymentID.compareTo(payment.paymentID);
+    }
 }
