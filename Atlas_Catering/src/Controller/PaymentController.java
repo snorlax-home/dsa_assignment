@@ -51,6 +51,10 @@ public class PaymentController {
         return paymentSortedArrayList.getNumberOfEntries();
     }
 
+    public void sortDescendingOrder() {
+        paymentSortedArrayList.sortDescending();
+    }
+
     // Method to check if the payment sorted array list is empty
     public boolean isEmpty() {
         return paymentSortedArrayList.isEmpty();

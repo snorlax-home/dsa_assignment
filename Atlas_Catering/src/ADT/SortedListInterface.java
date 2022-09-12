@@ -42,7 +42,6 @@ public interface SortedListInterface<T> {
 
   public <T> T search(T list, T anEntry);
 
-  // public <T> void selectionSortDescending();
 
   public Iterator<T> getIterator();
 } 

@@ -155,25 +155,6 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedListInter
     return null;
   }
 
-  // public void selectionSortDescending() {
-  //   for (int index = 0; index < numberOfEntries; index++) {
-      
-  //   }
-    // for (int index = 0; index < numberOfEntries; index++) {
-    //   int maxPosition = index;
-    //   int minPosition = index;
-
-    //   for (int j = index + 1; j < numberOfEntries; j++) {
-    //     if (array[j] < array[minPosition]) {
-    //       minPosition = j;
-    //     }
-    //     if (array[j] > array[maxPosition]) {
-    //       maxPosition = j;
-    //     }
-    //   }
-    // }
-  }
-
   public Iterator<T> getIterator() {
     return new ListIterator();
   }
