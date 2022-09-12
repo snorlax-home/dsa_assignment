@@ -22,6 +22,10 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedListInter
   }
 
   public boolean add(T newEntry) {
+    if (isArrayFull()) {
+      expandArray();
+    }
+
     int i = 0;
     while (i < numberOfEntries && newEntry.compareTo(array[i]) > 0) {
       i++;
@@ -54,14 +58,33 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedListInter
     numberOfEntries = 0;
   }
 
-  public boolean contains(T anEntry) {
-    boolean found = false;
-    for (int index = 0; !found && (index < numberOfEntries); index++) {
-      if (anEntry.equals(array[index])) {
-        found = true;
+  public boolean contains(String targetEntry, String currentEntry) {
+    boolean results = false;
+    if (targetEntry.equals(currentEntry)) {
+      results = true;
+    }
+    else {
+      results = false;
+    }
+
+    return results;
+  }
+
+  public boolean replace(T targetedEntry, T replacementEntry) {
+    if (numberOfEntries == 0) {
+      return false;
+    }
+    else {
+      int index = 0;
+      while (index < numberOfEntries && array[index].compareTo(targetedEntry) < 0) {
+        index++;
+      }
+      if (array[index].equals(targetedEntry)) {
+        array[index] = replacementEntry;
+        return true;
       }
     }
-    return found;
+    return false;
   }
 
   public int getNumberOfEntries() {
@@ -81,15 +104,15 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedListInter
     return outputStr;
   }
 
-  private boolean isArrayFull() {
+ public boolean isArrayFull() {
     return numberOfEntries == array.length;
   }
 
-  private void doubleArray() {
+  public void expandArray() {
     T[] oldList = array;
     int oldSize = oldList.length;
 
-    array = (T[]) new Object[2 * oldSize];
+    array = (T[]) new Comparable[2 * oldSize];
 
     for (int index = 0; index < oldSize; index++) {
       array[index] = oldList[index];
@@ -115,19 +138,56 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedListInter
     }
   }
 
-  public Iterator<T> getIterator(){
+  public int capacity() {
+    return array.length;
+  }
+
+  public <T> T search(T list, T anEntry) {
+    Iterator<?> givenIterator = ((SortedListInterface<T>) list).getIterator();
+    while(givenIterator.hasNext()) {
+      T entry = (T)givenIterator.next();
+
+      if (entry.equals(anEntry)) {
+        return (T)entry;
+      }
+    }
+
+    return null;
+  }
+
+  // public void selectionSortDescending() {
+  //   for (int index = 0; index < numberOfEntries; index++) {
+      
+  //   }
+    // for (int index = 0; index < numberOfEntries; index++) {
+    //   int maxPosition = index;
+    //   int minPosition = index;
+
+    //   for (int j = index + 1; j < numberOfEntries; j++) {
+    //     if (array[j] < array[minPosition]) {
+    //       minPosition = j;
+    //     }
+    //     if (array[j] > array[maxPosition]) {
+    //       maxPosition = j;
+    //     }
+    //   }
+    // }
+  }
+
+  public Iterator<T> getIterator() {
     return new ListIterator();
   }
 
-  private class ListIterator implements Iterator<T>{
+  private class ListIterator implements Iterator<T> {
     // private Node currentNode = firstNode;
     int index;
-    public boolean hasNext(){
+    public boolean hasNext() {
       return index < numberOfEntries;
     }
-    public T next(){
+    
+    public T next() {
       T temp = null;
-      if(hasNext()){
+      if(hasNext()) {
         temp = array[index];
         index++;
       }

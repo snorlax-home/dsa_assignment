@@ -29,17 +29,16 @@ public class PaymentController {
     }
 
     // Method to remove a payment from the payment sorted array list
-    public void removePayment(Payment payment) {
-        paymentSortedArrayList.remove(payment);
+    public boolean removePayment(Payment payment) {
+        return paymentSortedArrayList.remove(payment);
     }
 
-    // Methods to check if a payment is in the payment sorted array list
-    public boolean containsPayment(Payment payment) {
-        return paymentSortedArrayList.contains(payment);
+    public boolean containsPayment(String targetPaymentID, String currentPaymentID) {
+        return paymentSortedArrayList.contains(targetPaymentID, currentPaymentID);
     }
 
-    public boolean containsPayment(String paymentID, String paymentMethod, double orderFees, double deliveryFees) {
-        return paymentSortedArrayList.contains(new Payment(paymentID, paymentMethod, orderFees, deliveryFees));
+    public boolean replacePayment(Payment targetedPayment, Payment replacePayment) {
+        return paymentSortedArrayList.replace(targetedPayment, replacePayment);
     }
 
     // Method to clear the payment sorted array list
@@ -55,6 +54,10 @@ public class PaymentController {
     // Method to check if the payment sorted array list is empty
     public boolean isEmpty() {
         return paymentSortedArrayList.isEmpty();
+    }
+
+    public int arrayListCapacity() {
+        return paymentSortedArrayList.capacity();
     }
 
     public Iterator<Payment> getIterator() {

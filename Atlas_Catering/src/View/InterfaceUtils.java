@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class InterfaceUtils {
 
   public static void printHeader() {
-    System.out.println("--------ATLAS Catering--------");
+    System.out.println("\n========ATLAS Catering========");
   }
 
   public static void printDeliveryHeader() {
@@ -26,6 +26,10 @@ public class InterfaceUtils {
 
   public static void printPaymentHeader() {
     System.out.println("-----------Payments-----------");
+  }
+
+  public static void printFooter() {
+    System.out.println("==============================");
   }
 
   public static boolean continuePrompt() {

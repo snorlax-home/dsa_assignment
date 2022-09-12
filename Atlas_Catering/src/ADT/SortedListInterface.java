@@ -6,7 +6,7 @@ import java.util.Iterator;
  * SortedListInterface - An interface for the ADT sorted list.
  * @param <T>
  */
-public interface SortedListInterface<T extends Comparable<T>> {
+public interface SortedListInterface<T> {
 
   /**
    * Task: Adds a new entry to the sorted list in its proper order.
@@ -24,13 +24,25 @@ public interface SortedListInterface<T extends Comparable<T>> {
    */
   public boolean remove(T anEntry);
 
-  public boolean contains(T anEntry);
+  public boolean contains(String targetEntry, String currentEntry);
+
+  public boolean replace(T selectedEntry, T replacementEntry);
 
   public void clear();
 
   public int getNumberOfEntries();
 
   public boolean isEmpty();
+
+  public boolean isArrayFull();
+
+  public void expandArray();
+
+  public int capacity();
+
+  public <T> T search(T list, T anEntry);
+
+  // public <T> void selectionSortDescending();
 
   public Iterator<T> getIterator();
 } 
