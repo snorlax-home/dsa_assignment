@@ -1,3 +1,5 @@
+// Author: Goh Neng Fu
+
 package ADT;
 
 import java.util.Iterator;
@@ -7,6 +9,7 @@ public class LinkedQueue<T> implements LinkedQueueInterface<T> {
   private Node firstNode; // references node at front of queue
   private Node lastNode;  // references node at back of queue
 
+  
   public LinkedQueue() {
     firstNode = null;
     lastNode = null;
@@ -40,7 +43,7 @@ public class LinkedQueue<T> implements LinkedQueueInterface<T> {
     if (!isEmpty()) {
       front = firstNode.data;
       firstNode = firstNode.next;
-
+      
       if (firstNode == null) {
         lastNode = null;
       }
@@ -65,11 +68,11 @@ public class LinkedQueue<T> implements LinkedQueueInterface<T> {
   private class LinkedQueueIterator implements Iterator<T> {
 
     private Node currentNode;
-
+    
     public LinkedQueueIterator() {
       currentNode = firstNode;
     }
-
+    
     @Override
     public boolean hasNext() {
       return currentNode != null;

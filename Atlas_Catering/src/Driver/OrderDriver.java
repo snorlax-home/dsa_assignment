@@ -1,3 +1,5 @@
+//Author: Goh Neng Fu
+
 package Driver;
 
 import View.InterfaceUtils;
@@ -5,26 +7,34 @@ import Controller.OrderController;
 import View.OrderView;
 
 public class OrderDriver {
-    public static void main(String[] args) {
-        OrderController controller = new OrderController();
-        OrderView view = new OrderView(controller);
-        int choice = 0;
-        while (choice != 3) {
+    public static void orderMenu(OrderController orderController) {
+        OrderView orderView = new OrderView(orderController);
+        System.out.println(orderView.getClass());
+        System.out.println(orderController.getClass());
+        int choice = 0;     
+        
+        // order selection menu
+        while (choice != 4) {
             InterfaceUtils.printHeader();
             System.out.println("Order");
             System.out.println("--------");
             System.out.println("1. Add Order");
             System.out.println("2. Remove Order");
-            System.out.println("3. View Order");
-            System.out.println("4. Clear Order");
-            System.out.println("5. Exit");
+            System.out.println("3. Order Report");
+            System.out.println("4. Exit");
             System.out.print("Please enter your selection: ");
-            choice = InterfaceUtils.getChoice(2);
+            choice = InterfaceUtils.getChoice(5);
             switch (choice) {
                 case 1:
-                    view.addOrder();
+                    orderView.addOrder();
                     break;
                 case 2:
+                    orderView.removeOrder();
+                    break;
+                case 3:
+                    orderView.orderReport();
+                    break;
+                case 4:
                     System.out.println("Thank you for using Atlas Catering!");
                     break;
             }

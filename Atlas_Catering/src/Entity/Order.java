@@ -1,31 +1,40 @@
+//Author: Goh Neng Fu
+
 package Entity;
 
-import java.time.LocalDate;
-
 public class Order {
+    // attributes
+    Product[] products; 
     String orderNo;
     double orderPrice;
-    LocalDate orderDate;
 
+    // constructors
     public Order(){
         this("", 0.0);
     }
 
     public Order(String orderNo, double orderPrice){
+        this.products = new Product[1];
         this.orderNo = orderNo;
         this.orderPrice = orderPrice;
+    }
+
+    // getters
+    public Product[] getProducts() {
+        return products;
     }
 
     public String getOrderNo() {
         return orderNo;
     }
-
-    public void setOrderNo(String orderNo) {
-        this.orderNo = orderNo;
-    }
     
     public double getOrderPrice() {
         return orderPrice;
+    }
+
+    // setters
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public void setOrderPrice(double orderPrice) {
