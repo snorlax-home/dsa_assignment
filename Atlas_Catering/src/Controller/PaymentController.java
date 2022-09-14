@@ -1,3 +1,6 @@
+/*
+ * @Author: Wong Yan Zhi @ 21WMR03679
+ */
 package Controller;
 
 import ADT.SortedArrayList;
@@ -6,6 +9,7 @@ import Entity.Payment;
 import java.util.Iterator;
 
 public class PaymentController {
+
     // Attributes for Payment Sorted Array List
     private SortedListInterface<Payment> paymentSortedArrayList;
 
@@ -49,10 +53,6 @@ public class PaymentController {
     // Method to get the number of payments in the payment sorted array list
     public int getNumberOfPayments() {
         return paymentSortedArrayList.getNumberOfEntries();
-    }
-
-    public void sortDescendingOrder() {
-        paymentSortedArrayList.sortDescending();
     }
 
     // Method to check if the payment sorted array list is empty

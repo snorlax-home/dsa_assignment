@@ -1,3 +1,6 @@
+/*
+ * @Author: Wong Yan Zhi @ 21WMR03679
+ */
 package Driver;
 
 import Controller.PaymentController;
@@ -5,6 +8,7 @@ import View.PaymentView;
 import View.InterfaceUtils;
 
 public class PaymentDriver {
+
     public static void initialize(PaymentController paymentController) {
         System.out.println("Initializing Payment Sorted Array List...");
         paymentController.addPayment("P0005", "Cash", 10.00, 5.00);
@@ -23,7 +27,7 @@ public class PaymentDriver {
     public static void main(String[] args) {
         PaymentController paymentController = new PaymentController();
         PaymentView paymentView = new PaymentView(paymentController);
-        
+
         int choice = 0;
         while (choice != 9) {
             InterfaceUtils.printHeader();
@@ -45,31 +49,24 @@ public class PaymentDriver {
                 case 1:
                     paymentView.addPayment();
                     break;
-                
                 case 2:
                     paymentView.modifyPayment();
                     break;
-
                 case 3:
                     paymentView.removePayment();
                     break;
-
                 case 4:
                     paymentView.searchPayment();
                     break;
-
                 case 5:
                     paymentView.paymentReport();
                     break;
-                
                 case 6:
                     initialize(paymentController);
                     break;
-
                 case 7:
-                    System.out.println("\nCurrent ArrayList Maximum Capacity: "+ paymentController.arrayListCapacity() + "\n");
+                    paymentView.showArrayListCapacity();
                     break;
-
                 case 9:
                     System.out.println("\nThank you for coming to Atlas Catering!");
                     break;
