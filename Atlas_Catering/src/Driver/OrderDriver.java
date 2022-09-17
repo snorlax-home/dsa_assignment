@@ -11,9 +11,7 @@ import View.OrderView;
 
 public class OrderDriver {
     public static void orderMenu(OrderController orderController) {
-        OrderView orderView = new OrderView();
-        System.out.println(orderView.getClass());
-        System.out.println(orderController.getClass());
+        OrderController controller = new OrderController();
         int choice = 0;     
         
         // order selection menu
@@ -29,10 +27,10 @@ public class OrderDriver {
             choice = InterfaceUtils.getChoice(5);
             switch (choice) {
                 case 1:
-                    orderView.addOrder();
+                    controller.addOrder();
                     break;
                 case 2:
-                    orderView.removeOrder();
+                    controller.removeOrder();
                     break;
                 case 3:
                     // orderView.orderReport(Order order);
