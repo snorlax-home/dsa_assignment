@@ -1,3 +1,7 @@
+/*
+ * @Author: Wong Yan Zhi @ 21WMR03679
+ */
+
 package Entity;
 
 public class Payment implements Comparable<Payment> {

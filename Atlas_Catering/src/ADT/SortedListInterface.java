@@ -1,36 +1,46 @@
+/*
+ * @Author: Wong Yan Zhi @ 21WMR03679
+ */
 package ADT;
 
 import java.util.Iterator;
 
 /**
  * SortedListInterface - An interface for the ADT sorted list.
+ *
  * @param <T>
  */
-public interface SortedListInterface<T extends Comparable<T>> {
+public interface SortedListInterface<T> {
 
-  /**
-   * Task: Adds a new entry to the sorted list in its proper order.
-   *
-   * @param newEntry the object to be added as a new entry
-   * @return true if the addition is successful
-   */
-  public boolean add(T newEntry);
+    /**
+     * Task: Adds a new entry to the sorted list in its proper order.
+     *
+     * @param newEntry the object to be added as a new entry
+     * @return true if the addition is successful
+     */
+    public boolean add(T newEntry);
 
-  /**
-   * Task: Removes a specified entry from the sorted list.
-   *
-   * @param anEntry the object to be removed
-   * @return true if anEntry was located and removed
-   */
-  public boolean remove(T anEntry);
+    /**
+     * Task: Removes a specified entry from the sorted list.
+     *
+     * @param anEntry the object to be removed
+     * @return true if anEntry was located and removed
+     */
+    public boolean remove(T anEntry);
 
-  public boolean contains(T anEntry);
+    public boolean contains(String targetEntry, String currentEntry);
 
-  public void clear();
+    public boolean replace(T selectedEntry, T replacementEntry);
 
-  public int getNumberOfEntries();
+    public void clear();
 
-  public boolean isEmpty();
+    public int getNumberOfEntries();
 
-  public Iterator<T> getIterator();
-} 
+    public boolean isEmpty();
+
+    public int capacity();
+
+    public <T> T search(T list, T anEntry);
+
+    public Iterator<T> getIterator();
+}
