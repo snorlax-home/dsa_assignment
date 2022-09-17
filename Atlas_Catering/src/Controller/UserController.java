@@ -23,7 +23,7 @@ public class UserController {
     }
 
     public int getUserIndex(User user) {
-        return this.users.getIndex(user);
+        return this.users.indexOf(user);
     }
 
     public User readUser(int index) {
@@ -36,7 +36,7 @@ public class UserController {
 
     public void deleteUser(User user) {
         //this.user.findAll();
-        int index = this.users.getIndex(user);
+        int index = this.users.indexOf(user);
         if(index != -1) {
             this.users.remove(index);
         }
