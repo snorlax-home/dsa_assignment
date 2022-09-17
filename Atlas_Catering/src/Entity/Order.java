@@ -4,24 +4,24 @@ package Entity;
 
 public class Order {
     // attributes
-    Product[] products; 
+    Product product; 
     String orderNo;
     double orderPrice;
 
     // constructors
     public Order(){
-        this("", 0.0);
+        this("", 0.0, new Product());
     }
 
-    public Order(String orderNo, double orderPrice){
-        this.products = new Product[1];
+    public Order(String orderNo, double orderPrice, Product product){
+        this.product = product;
         this.orderNo = orderNo;
         this.orderPrice = orderPrice;
     }
 
     // getters
-    public Product[] getProducts() {
-        return products;
+    public Product getProducts() {
+        return product;
     }
 
     public String getOrderNo() {
