@@ -17,6 +17,7 @@ public class PaymentView {
         this.paymentController = controller;
     }
 
+    // Add a payment into the payment module
     public void addPayment() {
         InterfaceUtils.printHeader();
         InterfaceUtils.printPaymentHeader();
@@ -49,6 +50,7 @@ public class PaymentView {
         InterfaceUtils.continuePrompt("0");
     }
 
+    // Remove the selected payment
     public void removePayment() {
         InterfaceUtils.printHeader();
         InterfaceUtils.printPaymentHeader();
@@ -65,6 +67,7 @@ public class PaymentView {
             if (identifyResult) {
                 if (paymentController.removePayment(tempPayment)) {
                     System.out.println("Payment removed successfully.");
+                    paymentController.trimArray();
                 } else {
                     System.out.println("Payment removal failed.");
                 }
@@ -80,6 +83,7 @@ public class PaymentView {
         InterfaceUtils.continuePrompt("0");
     }
 
+    // Edit the payment record
     public void modifyPayment() {
         InterfaceUtils.printHeader();
         InterfaceUtils.printPaymentHeader();
@@ -128,6 +132,7 @@ public class PaymentView {
         InterfaceUtils.continuePrompt("0");
     }
 
+    // Search the payment by payment ID
     public void searchPayment() {
         InterfaceUtils.printHeader();
         InterfaceUtils.printPaymentHeader();
@@ -161,6 +166,7 @@ public class PaymentView {
         InterfaceUtils.continuePrompt("0");
     }
 
+    // Print the capacity of the array list (max object that it can keeps)
     public void showArrayListCapacity() {
         InterfaceUtils.printHeader();
         InterfaceUtils.printPaymentHeader();
@@ -171,6 +177,7 @@ public class PaymentView {
         InterfaceUtils.continuePrompt("0");
     }
 
+    // Print the payment report onto the console and format them accordingly
     public void paymentReport() {
         InterfaceUtils.printHeader();
         InterfaceUtils.printPaymentHeader();

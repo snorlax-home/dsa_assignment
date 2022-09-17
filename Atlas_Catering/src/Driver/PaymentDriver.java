@@ -9,6 +9,7 @@ import View.InterfaceUtils;
 
 public class PaymentDriver {
 
+    // Used for demo purposes only
     public static void initialize(PaymentController paymentController) {
         System.out.println("Initializing Payment Sorted Array List...");
         paymentController.addPayment("P0005", "Cash", 10.00, 5.00);
@@ -24,6 +25,7 @@ public class PaymentDriver {
         System.out.println("Payment Sorted Array List initialize completed!");
     }
 
+    // Main program here
     public static void main(String[] args) {
         PaymentController paymentController = new PaymentController();
         PaymentView paymentView = new PaymentView(paymentController);

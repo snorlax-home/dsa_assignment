@@ -37,10 +37,12 @@ public class PaymentController {
         return paymentSortedArrayList.remove(payment);
     }
 
+    // Method to search a payment based on PaymentID from the payment sorted array list
     public boolean containsPayment(String targetPaymentID, String currentPaymentID) {
         return paymentSortedArrayList.contains(targetPaymentID, currentPaymentID);
     }
-
+    
+    // Method to search a payment and replace it inside the payment sorted array list
     public boolean replacePayment(Payment targetedPayment, Payment replacePayment) {
         return paymentSortedArrayList.replace(targetedPayment, replacePayment);
     }
@@ -60,8 +62,14 @@ public class PaymentController {
         return paymentSortedArrayList.isEmpty();
     }
 
+    // Method to get the size of an array list
     public int arrayListCapacity() {
         return paymentSortedArrayList.capacity();
+    }
+    
+    // Method to trim the capacity of array list
+    public void trimArray() {
+        paymentSortedArrayList.trimToSize();
     }
 
     public Iterator<Payment> getIterator() {

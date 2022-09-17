@@ -1,28 +1,31 @@
 /*
  * @Author: Wong Yan Zhi @ 21WMR03679
  */
-
 package Entity;
 
 public class Payment implements Comparable<Payment> {
+
+    // Attributes for Payment class, all are set to private
     private String paymentID;
     private String paymentMethod;
     private double orderFees;
-    private static final double SST = 0.1;
+    private static final double SST = 0.1; // SST is set to 10%
     private double deliveryFees;
     private double totalPayment;
-    
+
+    // Constructors
     public Payment() {
-        this("", "",0.00, 0.00);
+        this("", "", 0.00, 0.00);
     }
 
-    public Payment(String paymentID, String paymentMethod,double orderFees, double deliveryFees) {
+    public Payment(String paymentID, String paymentMethod, double orderFees, double deliveryFees) {
         this.paymentID = paymentID;
         this.paymentMethod = paymentMethod;
         this.orderFees = orderFees;
         this.deliveryFees = deliveryFees;
     }
 
+    // Getters
     public String getPaymentID() {
         return this.paymentID;
     }
@@ -47,6 +50,7 @@ public class Payment implements Comparable<Payment> {
         return calculateTotalPayment();
     }
 
+    // Setters
     public void setPaymentID(String paymentID) {
         this.paymentID = paymentID;
     }
@@ -63,16 +67,19 @@ public class Payment implements Comparable<Payment> {
         this.deliveryFees = deliveryFees;
     }
 
+    // Calculate total payment
     private double calculateTotalPayment() {
         this.totalPayment = orderFees + (orderFees * SST) + deliveryFees;
         return this.totalPayment;
     }
 
+    // Override toString method
     @Override
     public String toString() {
         return "Payment{" + "paymentID=" + paymentID + ", orderFees=" + orderFees + ", deliveryFees=" + deliveryFees + ", totalPayment=" + totalPayment + '}';
     }
 
+    // Override compareTo method
     @Override
     public int compareTo(Payment payment) {
         return this.paymentID.compareTo(payment.paymentID);
