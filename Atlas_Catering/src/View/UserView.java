@@ -92,7 +92,7 @@ public class UserView {
         System.out.println("6. Password: " + user.getPassword());
     }
 
-    public void editUser() {
+    public void editUserMenu() {
         // UserView.printEditScreen("Username", user.getUsername());
         // controller.updateUser();
         showUserList();
@@ -110,7 +110,7 @@ public class UserView {
         }
     }
 
-    public void deleteUser() {
+    public void deleteUserMenu() {
         showUserList();
         System.out.println("Please Input user's number to perform delete user and -1 to end the program!");
         int userIndex = UserView.yourInputChoice(controller.usersAmount(), -1);
@@ -126,44 +126,6 @@ public class UserView {
         for(int i = 1; i <= list.getNumberOfEntries(); i++) {
             System.out.printf("%-10s %-40s \n", i, list.getEntry(i).toString());
         }
-    }
-
-    public static void main(String[] args) {
-        UserController controller = new UserController();
-        UserView view = new UserView(controller);     
-        
-
-        int choices = 4;
-
-        User nengfu = new User("Nengfu", "Amamiya14");
-        User tengli = new User("Tengli", "Shiyoruxz");
-        User waimin = new User("WaiMin1", "fraGo");
-        controller.createUser(nengfu);
-        controller.createUser(waimin);
-        controller.createUser(tengli);
-
-        while(controller.programRunning()) {
-            UserView.printUserMenu();
-            int input = UserView.yourInputChoice(choices);
-            switch(input) {
-                case 1:
-                    view.showUserList();
-                    InterfaceUtils.continuePrompt();
-                    break;
-                case 2:
-                    view.editUser();
-                    break;
-                case 3:
-                    view.deleteUser();
-                    break;
-                case 4:
-                    System.out.println("Thank you for using Atlas Catering!");
-                    controller.endProgram();
-                    break;
-            }
-        }
-        
-        
     }
     
 }
